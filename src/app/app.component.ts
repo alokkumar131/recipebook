@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'first-app';
+
+  selectedItem:boolean = true;
+
+  selectedNav(nav:boolean){
+    this.selectedItem = nav;
+    console.log(this.selectedItem)
+  }
+  
+
 }

@@ -1,10 +1,13 @@
-<app-header></app-header>
+<app-header (selectedNav)="selectedNav($event)"></app-header>
 <div class="container">
      <div class="row">
          <div class="col-sm-12">
-             <app-recipes></app-recipes>
+
+             <app-recipes *ngIf="selectedItem; else shopping"></app-recipes>
              <hr>
-             <app-shopping></app-shopping>
+             <ng-template #shopping>
+                <app-shopping></app-shopping>
+             </ng-template>
          </div>
      </div>
 </div>
