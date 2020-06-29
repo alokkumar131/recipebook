@@ -1,23 +1,31 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, DoCheck } from '@angular/core';
 import {ShoppingList} from '../shopping.model'
+import { ShoppingListService } from '../shoppinglist.serveice';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnChanges {
-  @Input() newItem;
+export class ShoppingListComponent implements DoCheck{
 
-  ingradients = [];
 
-  ngOnChanges(){
-    if(this.newItem != undefined){
-      this.ingradients.push(this.newItem);
-    }
-    else{
-      return false;
-    }
+  constructor(private shoppingListService: ShoppingListService){}
+  ingradients;
+  isActiveListitems = false;
+
+  ngDoCheck(){
+      if(this.shoppingListService.ingradients.length > 0){
+        this.isActiveListitems = true;
+        this.ingradients = this.shoppingListService.ingradients;
+      }else{
+        this.isActiveListitems = false;
+      }
+  }
+
+  onSelectIngradientList(ingradient){
+    this.shoppingListService.selectedItem.next(ingradient);
+    
   }
 
 }

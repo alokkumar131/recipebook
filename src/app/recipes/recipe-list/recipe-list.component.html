@@ -1,15 +1,16 @@
 <div class="row pt-5">
     <div class="col-sm-12">
-        <button class="btn btn-primary mb-4 mr-auto">New Recipe</button>
-        <div class="list-group" *ngFor = "let recipe of recipes" (click)="onSelectRecipe(recipe)">
-            <a href="#" class="mb-3 list-group-item list-group-item-action flex-column align-items-start">
+        <button class="btn btn-success mb-4 mr-auto" (click)="onAddNew()">New Recipe</button>
+        <div class="list-group" *ngFor = "let recipe of recipes; let i=index" >
+            <a [routerLink]="['/recipes', i]" class="mb-3 list-group-item list-group-item-action flex-column align-items-start " routerLinkActive="active" 
+             style="cursor: pointer;">
               <div class="d-flex w-100 justify-content-between align-items-center">
                 <div>
                     <h5 class="mb-1">{{recipe.name}}</h5>
                     <p class="mb-1">{{recipe.description}}</p>
                 </div>
                 
-                <img class="img-fluid" [src]="recipe.imagePath" alt="{{recipe.name}}" style="max-height: 50px; border-radius: 5px">
+                <img class="img-fluid" [src]="recipe.imagepath" alt="{{recipe.name}}" style="max-height: 50px; border-radius: 5px">
               </div>
               
             </a>

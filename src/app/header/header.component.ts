@@ -11,17 +11,7 @@ export class HeaderComponent{
     @ViewChild('navbar') navRef:ElementRef;
 
     constructor(){}
-
-    recipeSelected = true;
-    onSelectShopingList(){
-        this.recipeSelected = false;
-        this.selectedNav.emit(this.recipeSelected);
-    }
-    onSelectRecipe(){
-       this.recipeSelected = true;
-       this.selectedNav.emit(this.recipeSelected);
-    }
-
+    
     onClickDropdown(){
         if(this.elRef.nativeElement.className === 'dropdown-menu'){
             this.elRef.nativeElement.className='dropdown-menu show'

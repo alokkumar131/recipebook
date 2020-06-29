@@ -1,34 +1,36 @@
 <div class="row" >
-  <div *ngIf="isItemSelected">
+<div *ngIf="!isItemSelected">
 
+  <div class="col-sm-12 pt-5">
+    <img [src]="singleRecipeItem.imagepath" class ="img-fluid" alt="{{singleRecipeItem.name}}" style="max-width: 300px;">
+</div>
     <div class="col-sm-12 pt-5">
-      <img [src]="singleRecipeItem.imagePath" class ="img-fluid" alt="{{singleRecipeItem.name}}">
-  </div>
-      <div class="col-sm-12 pt-5">
-          <h1>{{singleRecipeItem.name}}</h1>
-    
-      </div>
-      <div class="col-sm-12">
+        <h1>{{singleRecipeItem.name}}</h1>
   
-              <div class="input-group-prepend">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage Recipes</button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                </div>
+    </div>
+    <div class="col-sm-12">
+
+            <div class="input-group-prepend">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage Recipes</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" style="cursor: pointer;"
+                (click)="onEdit(id)"  routerLink='edit'>Edit Recipe</a>
               </div>
-         
             </div>
-            <div class="col-sm-12">
-              <p>{{singleRecipeItem.description}}</p>
+       
           </div>
           <div class="col-sm-12">
-              <p>Ingradients</p>
-          </div>
-  
-  </div>
+            <p>{{singleRecipeItem.description}}</p>
+        </div>
+        <div class="col-sm-12">
+            <p>Ingradients</p>
+        </div>
+
+</div>
 
 
-      
-      
+    
+
+
 </div>

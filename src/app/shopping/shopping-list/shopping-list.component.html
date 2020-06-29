@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12 py-5">
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let ingradient of ingradients">
+        <ul class="list-group" *ngIf="isActiveListitems">
+            <li class="list-group-item" style="cursor: pointer;" routerLinkActive="active" *ngFor="let ingradient of ingradients; let i=index;" (click)="onSelectIngradientList(i)">
                 {{ingradient.name}} ({{ingradient.amount}})
             </li>
           </ul>

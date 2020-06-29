@@ -1,0 +1,82 @@
+<div class="row pt-5">
+  <div class="col-sm-12">
+    <form #recipeForm="ngForm" (ngSubmit)="onSubmit(recipeForm)">
+      <button type="submit" class="btn btn-primary btn-sm mr-3" [disabled]="!recipeForm.valid">Submit</button>
+      <button type="submit" class="btn btn-success btn-sm mr-3" [disabled]="!recipeForm.valid">Clear</button>
+      <button type="button" class="btn btn-danger btn-sm" [disabled]="!recipeForm.valid">Delete</button>
+      <div class="form-group">
+        <label>Name</label>
+        <input 
+        type="text" 
+        class="form-control"
+        [(ngModel)]="name"
+        name="name"
+        required>
+      </div>
+      <div class="form-group">
+        <label>Image Path</label>
+        <input 
+        type="text" 
+        class="form-control"
+        [(ngModel)]="imagepath"
+        name="imagepath"
+        required>
+      </div>
+      <div>
+        <img [src]="imagepath" alt="{{name}}" style="max-width: 300px;">
+      </div>
+      <div class="form-group">
+        <label for="email">Description</label>
+        <textarea 
+        class="form-control"
+        [(ngModel)]="description"
+        name="description" required></textarea>
+      </div>
+      <div class="form-group" ngModelGroup="ingradientData" #ingradientData="ngModelGroup">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Ingradient</label>
+              <input 
+              type="text" 
+              class="form-control"
+              [(ngModel)]= "igname"
+              name="ingradientname" #ingradientname="ngModel"
+              >
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Quantity</label>
+            <input 
+            type="text" 
+            class="form-control"
+            [(ngModel)]="qty"
+            name="quantity"
+            #quantity="ngModel">
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+          <button class="btn btn-success btn-sm mr-2" type="button" (click)="onUpdate(ingradientname.value, quantity.value)" 
+          [disabled]="(qty && igname) ? false: true">{{editingMode? 'Update': 'Add'}}</button>
+          <button  class="btn btn-danger btn-sm" type="button" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+      </div>
+      <div class="form-group" *ngIf="ingradients.length>0">
+        <label for="email">Ingradients</label>
+        <ul class="list-group">
+           <li style="cursor: pointer;" class="list-group-item d-flex justify-content-between" *ngFor="let ingradient of ingradients; let i=index;" (click)="onEditIngradient(ingradient, i)">{{ingradient.name}} &#8594; {{ingradient.quantity}}<button class="btn btn-sm btn-danger" (click)="onDelete()">Delete</button></li>
+        </ul>
+      </div>
+
+    </form>
+
+  </div>
+</div>

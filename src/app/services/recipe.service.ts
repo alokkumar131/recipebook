@@ -1,24 +1,37 @@
-import { EventEmitter } from '@angular/core';
 import { Recipe } from '../recipes/recipe.model'
+import { Subject } from 'rxjs';
+import { EventEmitter } from '@angular/core';
+
 
 
 
 export class RecipeService {
   recipes : Recipe[] = [
-    new Recipe('Chiken kurma', 'This is simply a test', 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Chicken_Korma.JPG'),
-    new Recipe('Mutton kurma', 'This is simply a test', 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Chicken_Korma.JPG'),
-    new Recipe('prawn kurma', 'This is simply a test', 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Chicken_Korma.JPG')
+    {'name':'Chiken kurma', 'imagepath':'https://upload.wikimedia.org/wikipedia/commons/a/a8/Chicken_Korma.JPG', 'description':'This is simply a test', ingradients:[{'name':'Chiken', 'quantity':1}] },
+    {'name':'Mutton rice', 'imagepath':'https://upload.wikimedia.org/wikipedia/commons/a/a8/Chicken_Korma.JPG', 'description':'This is simply a test', ingradients:[{'name':'Chiken', 'quantity':1}] },
+    {'name':'Veg Kolhapuri', 'imagepath':'https://upload.wikimedia.org/wikipedia/commons/a/a8/Chicken_Korma.JPG', 'description':'This is simply a test', ingradients:[{'name':'Chiken', 'quantity':1}] },
   ];
 
-  singleRecipe;
 
   constructor() { }
+  editIndex
+  editRecipe = new Subject<any>();
 
-  getSelectedRecipe = new EventEmitter<any>();
-  // getSelectListRecipe(recipe){
-  //       this.singleRecipe = recipe;
-  //       console.log(this.singleRecipe);
-  // }
+  getRecipe(id){
+         return this.recipes[id];
+  }
 
+  addRecipe(recipe){
+     this.recipes.unshift(recipe);
+     console.log(this.recipes);
+  }
+  onEditRecipe(){
+    return this.editIndex;
+  }
+  updateRecipe(recipe, i){
+    console.log(i)
+    this.recipes[i] = recipe
+    console.log(this.recipes)
+  }
 
 }
